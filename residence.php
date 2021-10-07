@@ -1,19 +1,15 @@
 <pre>
 <?php
 
-$sql = "SELECT NumResidence AS num,
-Nomresidence AS nom,
-RueResidence AS rue,
-CPResidence AS cp,
-VilleResidence AS ville,
-UrlPhotoResidence AS url, 
-Ascenseuresidence AS ascenseur
-ParkingResidence AS parking,
-StandingResidence 
-FROM salac_intra
-where NumResidence = $numero;";
-$reponse=$bdd->query($sql);
-$infos = $reponse->fetch(PDO::FETCH_ASSOC);
+	$sql = "
+		SELECT NumResidence AS num, Nomresidence AS nom, RueResidence AS rue, CPResidence AS cp, VilleResidence AS ville,
+				UrlPhotoResidence AS url, Ascenseuresidence AS ascenseur,	ParkingResidence AS parking, StandingResidence 
+		FROM salac_intra
+		WHERE NumResidence = $numero;
+	";
+
+	$reponse=$bdd->query($sql);
+	$infos = $reponse->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -23,7 +19,7 @@ $infos = $reponse->fetch(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title> Résidence "Coulomb"</title>	
 	<META http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<LINK REL="Stylesheet" HREF ="FichierDeStyle.css" TYPE="text/css" />
+	<LINK REL="Stylesheet" HREF ="assets/css/FichierDeStyle.css" TYPE="text/css" />
 </head>
 <body>
 
