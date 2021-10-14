@@ -38,19 +38,16 @@
 					<tr class="tr_commodites">
 						<td>Classification :</td>
 						<td>
-
 							<?php 
-			for ($i=0; $i< $infos->StandingResidence; $i++ ) {
-				if(($i+1)<=5){echo '<img src="Photos/Star.png">';} // On limite le nombre d'étoile a 5
-			} 
-			?>
-
+								for ($i=0; $i< $infos->StandingResidence; $i++ ) {
+									if(($i+1)<=5){echo '<img src="Photos/Star.png">';} // On limite le nombre d'étoile a 5
+								} 
+							?>
 						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
-	<?php
-        } ?>
+	<?php } ?>
 	<?php require "include/footer.php"; ?>
