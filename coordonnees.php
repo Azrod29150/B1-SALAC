@@ -1,9 +1,3 @@
-<div class="PartieCentrale">
-	<h1> "SA LAC" : <span class="lettresRouges">L</span>ouez 
-					votre <span class="lettresRouges">A</span>ppartement 
-					ou votre <span class="lettresRouges">C</span>hambre ! </h1> 
-	<img class="imgLogo" src="Photos/Logo.jpg">
-	<hr>
 	<h2>Coordonnées de la société :</h2>
 
 	<p>SA LAC</p>
@@ -71,4 +65,3 @@
 			<p> <INPUT NAME="send" TYPE="submit" VALUE="Envoyer" >
 				<INPUT NAME="reset" TYPE="reset" VALUE="Effacer">
 		</form>
-</div>

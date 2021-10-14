@@ -1,67 +1,56 @@
-<pre>
-<?php
+	<?php 
+	require "include/header.php"; 
+	$residence = $_GET['res'];
+	require_once("bdd/connect.php"); 
+		$req = $db->query("SELECT * FROM T_Residences WHERE NomResidence='$residence';");
+		$nb_resultats = $req->rowCount();
+        if ($nb_resultats != 0) {
+            $infos = $req->fetch();
+            $ascenseur = ($infos->AscenseurResidence)? "Yes" : "No";
+            $parking = ($infos->ParkingResidence)? "Yes" : "No"; ?>
+	<div class="row">
+		<h2>Résidence "<?php echo $infos->NomResidence; ?>"</h2>
+		<div class="col">
+			<div class="card">
+				<img src="Photos/<?php echo rawurlencode($infos->NomResidence); ?>/<?php echo rawurlencode($infos->NomResidence); ?>-Vue.jpg"
+					class="card-img-top img-fluid">
+				<div class="card-body"><?php echo $infos->RueResidence; ?> <br> <?php echo $infos->CPResidence; ?>
+					<?php echo $infos->VilleResidence; ?></div>
+			</div>
+		</div>
+		<div class="col-md-auto">
+			<div class="card">
+				<table class="table table-border">
+					<tr class="tr_Titre_commodites">
+						<td colspan="2">Commodités</td>
+					</tr>
 
-$sql = "SELECT NumResidence AS num,
-Nomresidence AS nom,
-RueResidence AS rue,
-CPResidence AS cp,
-VilleResidence AS ville,
-UrlPhotoResidence AS url, 
-Ascenseuresidence AS ascenseur
-ParkingResidence AS parking,
-StandingResidence 
-FROM salac_intra
-where NumResidence = $numero;";
-$reponse=$bdd->query($sql);
-$infos = $reponse->fetch(PDO::FETCH_ASSOC);
+					<tr class="tr_commodites">
+						<td>Ascenseur :</td>
+						<td><img src="Photos/<?php echo $ascenseur; ?>.png"></td>
+					</tr>
 
-?>
+					<tr class="tr_commodites">
+						<td>Parking :</td>
+						<td><img src="Photos/<?php echo $parking; ?>.png"></td>
+					</tr>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Résidence "Coulomb"</title>	
-	<META http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<LINK REL="Stylesheet" HREF ="FichierDeStyle.css" TYPE="text/css" />
-</head>
-<body>
+					<tr class="tr_commodites">
+						<td>Classification :</td>
+						<td>
 
-<div class="PartieCentrale">
-	<h1> "SA LAC" : <span class="lettresRouges">L</span>ouez 
-				votre <span class="lettresRouges">A</span>ppartement 
-				ou votre <span class="lettresRouges">C</span>hambre ! </h1> 
-	<img class="imgLogo" src="Photos/Logo.jpg">
-	<hr>
-	<table>
-		<tr>			
-			<th colspan="4"> Résidence "Fresnel"</th>
-		</tr>
-		<tr>
-			<td><img src="Photos/Fresnel/Fresnel-Vue.jpg"></td>
-			<td>Rue des sternes <br> 29000 QUIMPER</td>
-		</tr>
-		<tr class="tr_Titre_commodites">
-			<td colspan="2">Commodités</td>
-		</tr>
-		<tr class="tr_commodites">
-			<td>Ascenseur :</td>
-			<td><img src="Photos/Yes.png"></td>
-		</tr>
-		<tr class="tr_commodites">
-			<td>Parking :</td>
-			<td><img src="Photos/No.png"></td>
-		</tr>
-		<tr class="tr_commodites">
-			<td>Classification :</td>
-			<td>
-				<img src="Photos/Star.png">
-				<img src="Photos/Star.png">
-				<img src="Photos/Star.png">
-			</td>
-		</tr>		
-	</table>
-</div>
+							<?php 
+			for ($i=0; $i< $infos->StandingResidence; $i++ ) {
+				if(($i+1)<=5){echo '<img src="Photos/Star.png">';} // On limite le nombre d'étoile a 5
+			} 
+			?>
 
-</body>
-</html>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<?php
+        } ?>
+	<?php require "include/footer.php"; ?>
